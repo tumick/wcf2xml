@@ -1,0 +1,43 @@
+{
+  "name": "wcf2xml",
+  "version": "1.0.1",
+  "description": "Convert WCF-binary buffer to plain XML",
+  "homepage": "https://github.com/tumick/wcf2xml",
+  "bugs": {
+    "url": "https://github.com/tumick/wcf2xml/issues",
+    "email": "tumick@i.ua"
+  },
+  "files": [
+    "test",
+    "bn.js",
+    "dict.js"
+  ],
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tumick/wcf2xml.git"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "mocha": "~2.4"
+  },
+  "keywords": [
+    "WCF-binary",
+    ".NET Binary",
+    "XML",
+    "MC-NBFX"
+  ],
+  "author": {
+    "name": "Oleksandr Tumak",
+    "email": "tumak.oleksandr@gmail.com"
+  },
+  "license": "ISC",
+  "readme": "# wcf2xml\n\nConvert WCF-binary buffer to plain XML.\n\n\"WCF Binary\" (aka \".NET Binary\") is the binary packed format for WCF (Windows Communication Foundation), as described in this specification: [MC-NBFX]. (PDF file from _microsoft.com_)\n\nUsually You meet WCF-binary data when communicating with SOAP servers, configured to pack their answers to binary form.\nActually WCF-binary contains an XML document, and _wcf2xml_ package allows your *node.js* application to convert the Buffer of binary data received from server to plain XML.\n\nExample of WCF-binary packed data:\n\n![data-image]\n\nWill be decoded to this XML text:\n\n```xml\n<s:Envelope xmlns:a=\"http://www.w3.org/2005/08/addressing\" xmlns:s=\"http://www.w3.org/2003/05/soap-envelope\">\n  <s:Header>\n    <a:Action s:mustUnderstand=\"1\">action</a:Action>\n  </s:Header>\n  <s:Body>\n    <Inventory>0</Inventory>\n  </s:Body>\n</s:Envelope>\n```\n\n## Installation\n\n```sh\n$ npm install wcf2xml\n```\n\n## API\n\n```js\nvar w2x = require('wcf2xml');\nvar buf = ... // Buffer of data received from server or read from file\nvar xml = w2x.decode(buf);  // decoded XML in String\n``` \n\nYou receive XML as `String` to your local variable `xml`.\n\n### decode(buffer, [indent], [linefeed])\n\nParameter `buffer` gets the `Buffer` object containing binary data.\n\nOptional parameter `indent` has default value `\"  \"` (two spaces). It is used to indent nested XML elements.\n\nOptional parameter `linefeed` has default value `\"\\r\\n\"` (CR-LF in Windows' style). It is used to divide child elements inside parent, and also parent's start and finish tags.\n\nIf You want, for example, retrieve single-line XML text without any indenting or dividing, pass `\"\"` to both optional parameters.\n\n## Tests\n\nPackage contains [mocha] _test.js_ unit in _test_ folder.\n\nIf You want to contribute the package, use this command to run tests (You will need _mocha_ installed):\n\n```sh\n$ npm test\n```\n\n## TODO\n\n### function encode()\n\nIt seems logical to add some `encode()` function to encode an XML to binary format. But I have 2 problems with this:\n\n1) I do not need such a functionality right now.\n\n2) Generally plain XML doesn't contain enough information for monosemantic encoding, e.g. `<data>123</data>` can mean Int8 data, Int16, Int32, Int64, UInt64, Chars8, Bytes8 etc. My very first idea is to use some additional marks, e.g. `<data>[Int16]123</data>`, but it is not as beautiful solution as I would like to see. If You have any better ideas, You are welcome.\n\n### test coverage\n\nIt would be great to cover function `decode()` with full set of tests, including all border conditions for all record types.\n\n## License\n\n[ISC](LICENSE) \n\n[data-image]: http://i.stack.imgur.com/sTfsf.png\n[MC-NBFX]: http://download.microsoft.com/download/9/5/E/95EF66AF-9026-4BB0-A41D-A4F81802D92C/[MC-NBFX].pdf\n[mocha]: https://github.com/mochajs/mocha\n",
+  "readmeFilename": "README.md",
+  "_id": "wcf2xml@1.0.1",
+  "_shasum": "9c58dacb7f47a368435b4ef80f7f8e59a25246d4",
+  "_from": "wcf2xml",
+  "_resolved": "file:wcf2xml"
+}
