@@ -5,7 +5,7 @@ Convert WCF-binary buffer to plain XML.
 "WCF Binary" (aka ".NET Binary") is the binary packed format for WCF (Windows Communication Foundation), as described in this specification: [MC-NBFX]. (PDF file from _microsoft.com_)
 
 Usually You meet WCF-binary data when communicating with SOAP servers, configured to pack their answers to binary form.
-Actually WCF-binary contains an XML document, and _wcf2bin_ package allows your *node.js* application to convert the Buffer of binary data received from server to plain XML.
+Actually WCF-binary contains an XML document, and _wcf2xml_ package allows your *node.js* application to convert the Buffer of binary data received from server to plain XML.
 
 Example of WCF-binary packed data:
 

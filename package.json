@@ -1,6 +1,6 @@
 {
   "name": "wcf2xml",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Convert WCF-binary buffer to plain XML",
   "homepage": "https://github.com/tumick/wcf2xml",
   "bugs": {
