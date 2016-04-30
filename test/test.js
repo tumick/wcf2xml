@@ -5,7 +5,7 @@ function test(buf, check){
   assert.equal(wcf2xml.decode(new Buffer(buf, 'hex'), '', ''), check);
 }
 
-describe('Function wcfbin2xml.decode()', function() {
+describe('Function wcf2xml.decode()', function() {
   it('should process record EndElement (code 0x01)', function(){
     test('4003646F6301', '<doc></doc>');
   });
